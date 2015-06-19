@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Dnx5.Aurelia.Web
 {
-    public class AppSettings
-    {
-        public string SiteTitle { get; set; }
-    }
+	public class AppSettings
+	{
+		public string SiteTitle { get; set; }
+	}
 }
