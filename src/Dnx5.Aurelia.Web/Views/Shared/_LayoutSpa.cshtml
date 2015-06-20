@@ -57,15 +57,24 @@
 	<!-- build:app(build) scripts/app.js -->
 	<script src="scripts/app.js"></script>
 	<!-- endbuild -->
-	@*<environment names="Development">
-			<script src="~/lib/jquery/jquery.js"></script>
+	<environment names="Development">
+		@*<script src="~/lib/jquery/jquery.js"></script>
 			<script src="~/lib/bootstrap/js/bootstrap.js"></script>
 			<script src="~/lib/hammer.js/hammer.js"></script>
-			<script src="~/lib/bootstrap-touch-carousel/js/bootstrap-touch-carousel.js"></script>
-		</environment>
-		<environment names="Staging,Production">
+			<script src="~/lib/bootstrap-touch-carousel/js/bootstrap-touch-carousel.js"></script>*@
 
-		</environment>*@
+		<!-- browser sync -->
+		<script type='text/javascript' id="__bs_script__">
+			//<![CDATA[
+			document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.7.12.js'><\/script>".replace("HOST", location.hostname));
+			//]]></script>
+		<!-- end browser sync -->
+	</environment>
+	<environment names="Staging,Production">
+
+	</environment>
+
+
 
 	@RenderSection("scripts", required: false)
 </body>

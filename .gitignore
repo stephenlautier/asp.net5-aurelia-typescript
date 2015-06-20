@@ -197,3 +197,4 @@ FakesAssemblies/
 
 # frontend build
 /**/wwwroot/lib/
+/**/wwwroot/styles/
