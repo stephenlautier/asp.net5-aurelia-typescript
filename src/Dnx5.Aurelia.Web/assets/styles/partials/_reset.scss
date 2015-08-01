@@ -4,3 +4,13 @@ html {
 	position: relative;
 	min-height: 100%;
 }
+
+body {
+	font-family: 'Open Sans', 'Helvetica Neue', 'Arial', sans-serif;
+	color: $primary-color;
+	background: $primary-bg-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Montserrat', 'Helvetica Neue', 'Arial', sans-serif;
+}
