@@ -5,10 +5,16 @@ var gulp = require("gulp"),
 	runseq = require("run-sequence"),
 	fs = require("fs"),
 	browserSync = require("browser-sync"),
+	tsc = require("gulp-typescript"),
 	sass = require("gulp-sass"),
-	sourcemaps = require("gulp-sourcemaps");
+	sourcemaps = require("gulp-sourcemaps"),
+	uglify = require("gulp-uglify"),
+	merge = require("merge2");
+
 
 eval("var project = " + fs.readFileSync("./project.json"));
+
+var tsProject = tsc.createProject('tsconfig.json', { sortOutput: true });
 
 var paths = {
 	bower: "./bower_components/",
@@ -16,6 +22,10 @@ var paths = {
 	sass: {
 		src: ["./assets/styles/**/*.scss"],
 		dest: "./" + project.webroot + "/styles/"
+	},
+	ts: {
+		src: ["./app/**/*.ts"],
+		dest: "./" + project.webroot + "/app/"
 	},
 	publicRoot: "./" + project.webroot
 };
@@ -25,6 +35,7 @@ var paths = {
 gulp.task("watch", ["serve"], function () {
 
 	gulp.watch(paths.sass.src, ["compile:sass", browserSync.reload]).on("change", reportChange);
+	gulp.watch(paths.ts.src, ["compile:ts", browserSync.reload]).on("change", reportChange);
 
 });
 
@@ -44,6 +55,20 @@ gulp.task("compile:sass", function () {
 		.pipe(sourcemaps.write("."))
 		.pipe(gulp.dest(paths.sass.dest));
 
+});
+
+gulp.task("compile:ts", function () {
+	var tsResult = gulp
+		.src(paths.ts.src)
+		.pipe(sourcemaps.init())
+		.pipe(tsc(tsProject));
+
+	return merge([
+		tsResult.js
+			//.pipe(concat(paths.distFileName))
+			.pipe(sourcemaps.write("."))
+			.pipe(gulp.dest(paths.ts.dest))
+	]);
 });
 
 

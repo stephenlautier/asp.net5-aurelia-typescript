@@ -162,6 +162,7 @@ ClientBin/
 *.publishsettings
 node_modules/
 bower_components/
+jspm_packages/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -198,3 +199,5 @@ FakesAssemblies/
 # frontend build
 /**/wwwroot/lib/
 /**/wwwroot/styles/
+/**/wwwroot/app/
+/**/app/*.js
